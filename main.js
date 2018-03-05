@@ -15,7 +15,7 @@ let ac = new AudioContext(), fq = [73.42, 65.41, 61.74, 55.00], pn = (f,t2,s="tr
 }
 
 
-	let ca = document.getElementById("test"), c = ca.getContext("2d"), e=[], b=[],t=0,px=80,arr = ["ðøøøþÿ","ÈÀàÍðôÀô À","p}¶¼<","¸}6<<",I\"A\"", "|¢|", "þ", "Ä¢", "Bf", "0($þ ", "Nr", "|d", "â
+let ca = document.getElementById("test"), c = ca.getContext("2d"), e=[], b=[],t=0,px=80,arr = ["ðøøøþÿ","ÈÀàÍðôÀô À","p}¶¼<","¸}6<<","I\"A\"", "|¢|", "þ", "Ä¢", "Bf", "0($þ ", "Nr", "|d", "â\
 ", "ll", "L|"], f2, no=0, d=(a,x,y,m)=>{
 c.fillStyle = a<2 ? "#0f0" : "#fff";
 for (let i = 0, b = arr[a],l=b.length; i < l; i++)
@@ -85,8 +85,3 @@ document.body.addEventListener('keydown', e=> {
 	px += m*4;
   m == 0 && t>st+10 && b.push({x:px+5,y:178,d:-1}) && (st = t) && pn(58.27, 1,"sawtooth");
 });
-
-
-
-//d(0,0,0);
-//d(1,12,0);
