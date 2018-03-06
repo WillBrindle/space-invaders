@@ -81,22 +81,28 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
     if (v.x>px && v.x < px+11 && v.y > 178 && v.y < 186) b.splice(i,1), at=t, al=0, li--;
     if (!al) break;
     for(let j = 0; j < 3; j++) {
-    	// v.x > 30+j*50 && v.x < 55+x+j*50 && v.x > 
-      let f = 0, x = v.x - (30+j*50), y = v.y-150;
-      f = x >= 0 && x <= 22 && y >= 0 && y < 16 && bd[j][y+x*16];
-      
-      for (let k=-1, x = v.x - (30+j*50)-1, y = v.y-150; k < 2; k++) {
-      	if (f) {
-          for (let y2=y - (v.d < 0 ? 4 : 0); y2 < y+4; y2 ++){
-            if (x >= 0 && x <= 22 && y2 >= 0 && y2 < 16) {
-              bd[j][y2+x*16] = 0;
+      for (let l = v.y-v.d; (v.d > 0 && l <= v.y) || (v.d < 0 && l >= v.y); ) {
+        let f = 0, x = v.x - (30+j*50), y = l-150 << 0;
+        f = x >= 0 && x <= 22 && y >= 0 && y < 16 && bd[j][y+x*16];
+
+        for (let k=-1, x = v.x - (30+j*50)-1; k < 2; k++) {
+          if (f) {
+            for (let y2=y - (v.d < 0 ? 4 : 0); y2 < y+4; y2 ++){
+              if (x >= 0 && x <= 22 && y2 >= 0 && y2 < 16) {
+                bd[j][y2+x*16] = 0;
+              }
             }
           }
+          x++;
         }
-        x++;
+
+        l += v.d > 0 ? 1 : -1;
+        
+        if (f) {
+          b.splice(i,1);
+          break;
+        }
       }
-      
-      f && b.splice(i,1);
     }
     v.y < 0 && b.splice(i, 1);
   	c.f(v.x, v.y+=v.d, 1,2);
@@ -131,6 +137,7 @@ document.body.addEventListener('keydown', e=> {
 	if (!al) return;
 	let k = e.keyCode, m = (k==39)-(k==37);
   px += m*5;
+  px = Math.min(Math.max(px, 5), 185);
   m == 0 && t>st+10 && b.filter(v=>v.d<0).length==0 && b.push({x:px+5,y:178,d:-3.5}) && (st = t) && pn(58.27, 1,"sawtooth");
 });
 
