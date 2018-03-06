@@ -16,7 +16,7 @@ let ac = new AudioContext(), fq = [73.42, 65.41, 61.74, 55.00], pn = (f,t2,s="tr
 
 
 let bd = [];
-for (let k = 0; k < 3; k++) {
+for (let k = 0; k < 4; k++) {
 	let b = [], parts = "ðÿøÿüÿþÿÿÿÿ?ÿÿÿÿÿ";
   
   for (var i = 0; i < 22; i++) {
@@ -34,7 +34,7 @@ for (let k = 0; k < 3; k++) {
 }
 
 
-let ca = document.getElementById("test"), c = ca.getContext("2d"), e=[], b=[],t=0,px=80,boX=-999,arr = ["ðøøøþÿ","ÈÀàÍðôÀô À","p}¶¼<","¸}6<<","I\"A\"", "|¢|", "þ", "Ä¢", "Bf", "0($þ ", "Nr", "|d", "â\
+let ca = document.getElementById("test"), c = ca.getContext("2d"), e=[], b=[],t=0,px=120,boX=-999,arr = ["ðøøøþÿ","ÈÀàÍðôÀô À","p}¶¼<","¸}6<<","I\"A\"", "|¢|", "þ", "Ä¢", "Bf", "0($þ ", "Nr", "|d", "â\
 ", "ll", "L|", " 0xì|>.~"], f2, no=0, d=(a,x,y,m)=>{
 c.fillStyle = a<2 ? "#0f0" : "#fff";
 for (let i = 0, b = arr[a],l=b.length; i < l; i++)
@@ -44,9 +44,10 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
 	t++ > at+60 && li>=0 && (al=1);
   al && (x += dir*sp);
 
-	c.clearRect(0,0,200,200);
+	c.clearRect(0,0,250,200);
   
   su++;
+  sp = 20 / e.filter(e => e.v == 0).length;
   su % (15/sp<<0) == 0 && (sp *= 1.03) && ((su=0) || pn(fq[no], 2.5) || (no=(no+1)%4));
   
   
@@ -57,12 +58,12 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   sv++;
   al && sv % (11/sp<<0) == 0 && (s = e.reduce((c,b,u) => b.i>e[c].i&&(b.i/5<<0)==(e[c].i/5<<0) ? u : c, Math.random()*e.length << 0)) && (sv=0);
   
-  for(i=0; i < li; i++) d(0, 150+i*15, 3);
+  for(i=0; i < li; i++) d(0, 200+i*15, 3);
   
   for(i in e) {
   
   	let v = e[i], x2 = 15*(v.i/5<<0)+x<<0, y2=12*(v.i%5) + y * 6;
-    v.v<1 && (x2>189 && (x2=189,f=1), x2<0 && (x2=0,f=1));
+    v.v<1 && (x2>239 && (x2=189,f=1), x2<0 && (x2=0,f=1));
 
   	s==i &&b.push({x:x2+6,y:y2+8,d:1});
   	v.v < 9 && d(v.v>0?4:(t / 20 << 0) % 2 ? 2:3, x2, y2);
@@ -80,12 +81,12 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   	let v = b[i];
     if (v.x>px && v.x < px+11 && v.y > 178 && v.y < 186) b.splice(i,1), at=t, al=0, li--;
     if (!al) break;
-    for(let j = 0; j < 3; j++) {
+    for(let j = 0; j < 4; j++) {
       for (let l = v.y-v.d; (v.d > 0 && l <= v.y) || (v.d < 0 && l >= v.y); ) {
-        let f = 0, x = v.x - (30+j*50), y = l-150 << 0;
+        let f = 0, x = v.x - (40+j*50), y = l-150 << 0;
         f = x >= 0 && x <= 22 && y >= 0 && y < 16 && bd[j][y+x*16];
 
-        for (let k=-1, x = v.x - (30+j*50)-1; k < 2; k++) {
+        for (let k=-1, x = v.x - (40+j*50)-1; k < 2; k++) {
           if (f) {
             for (let y2=y - (v.d < 0 ? 4 : 0); y2 < y+4; y2 ++){
               if (x >= 0 && x <= 22 && y2 >= 0 && y2 < 16) {
@@ -115,7 +116,7 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   
   for (j in bd) {
     for (let i = 0,x,y; i < bd[j].length; i++, x=i/16<<0, y=i%16) {
-      bd[j][i] && c.fillRect(30+x+j*50, y+150, 1, 1);
+      bd[j][i] && c.fillRect(40+x+j*50, y+150, 1, 1);
     }
   }
   
@@ -137,7 +138,7 @@ document.body.addEventListener('keydown', e=> {
 	if (!al) return;
 	let k = e.keyCode, m = (k==39)-(k==37);
   px += m*5;
-  px = Math.min(Math.max(px, 5), 185);
+  px = Math.min(Math.max(px, 5), 235);
   m == 0 && t>st+10 && b.filter(v=>v.d<0).length==0 && b.push({x:px+5,y:178,d:-3.5}) && (st = t) && pn(58.27, 1,"sawtooth");
 });
 
