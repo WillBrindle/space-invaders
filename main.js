@@ -63,9 +63,9 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   for(i in e) {
   
   	let v = e[i], x2 = 15*(v.i/5<<0)+x<<0, y2=12*(v.i%5) + y * 6;
-    v.v<1 && (x2>239 && (x2=189,f=1), x2<0 && (x2=0,f=1));
+    v.v<1 && (x2>239 && (x2=239,f=1), x2<0 && (x2=0,f=1));
 
-  	s==i &&b.push({x:x2+6,y:y2+8,d:1});
+  	s==i &&b.push({x:x2+6,y:y2+8,d:1.5});
   	v.v < 9 && d(v.v>0?4:(t / 20 << 0) % 2 ? 2:3, x2, y2);
     v.v > 0 && v.v++;
     
@@ -137,9 +137,9 @@ r();
 document.body.addEventListener('keydown', e=> {
 	if (!al) return;
 	let k = e.keyCode, m = (k==39)-(k==37);
-  px += m*5;
+  px += m*8;
   px = Math.min(Math.max(px, 5), 235);
-  m == 0 && t>st+10 && b.filter(v=>v.d<0).length==0 && b.push({x:px+5,y:178,d:-3.5}) && (st = t) && pn(58.27, 1,"sawtooth");
+  m == 0 && t>st+10 && b.filter(v=>v.d<0).length==0 && b.push({x:px+5,y:178,d:-4.5}) && (st = t) && pn(58.27, 1,"sawtooth");
 });
 
 //d(0,0,0);
