@@ -56,7 +56,7 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   let s = -1,f = 0, i,j;
   e=e.filter(b=>b.v<10);
   sv++;
-  al && sv % (11/sp<<0) == 0 && (s = e.reduce((c,b,u) => b.i>e[c].i&&(b.i/5<<0)==(e[c].i/5<<0) ? u : c, Math.random()*e.length << 0)) && (sv=0);
+  al && sv % (16/sp<<0) == 0 && (s = e.reduce((c,b,u) => b.i>e[c].i&&(b.i/5<<0)==(e[c].i/5<<0) ? u : c, Math.random()*e.length << 0)) && (sv=0);
   
   for(i=0; i < li; i++) d(0, 200+i*15, 3);
   
