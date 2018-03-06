@@ -55,7 +55,7 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
   let s = -1,f = 0, i,j;
   e=e.filter(b=>b.v<10);
   sv++;
-  al && sv % (12/sp<<0) == 0 && (s = e.reduce((c,b,u) => b.i>e[c].i&&(b.i/5<<0)==(e[c].i/5<<0) ? u : c, Math.random()*e.length << 0)) && (sv=0);
+  al && sv % (11/sp<<0) == 0 && (s = e.reduce((c,b,u) => b.i>e[c].i&&(b.i/5<<0)==(e[c].i/5<<0) ? u : c, Math.random()*e.length << 0)) && (sv=0);
   
   for(i=0; i < li; i++) d(0, 150+i*15, 3);
   
@@ -98,6 +98,7 @@ for (let i = 0, b = arr[a],l=b.length; i < l; i++)
       
       f && b.splice(i,1);
     }
+    v.y < 0 && b.splice(i, 1);
   	c.f(v.x, v.y+=v.d, 1,2);
   }
   !al && (b=[]);
@@ -129,8 +130,8 @@ r();
 document.body.addEventListener('keydown', e=> {
 	if (!al) return;
 	let k = e.keyCode, m = (k==39)-(k==37);
-  px += m*4;
-  m == 0 && t>st+10 && b.push({x:px+5,y:178,d:-1}) && (st = t) && pn(58.27, 1,"sawtooth");
+  px += m*5;
+  m == 0 && t>st+10 && b.filter(v=>v.d<0).length==0 && b.push({x:px+5,y:178,d:-3.5}) && (st = t) && pn(58.27, 1,"sawtooth");
 });
 
 //d(0,0,0);
